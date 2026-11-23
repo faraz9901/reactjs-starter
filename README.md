@@ -1,6 +1,12 @@
 # React Starter
 
-Production-ready React starter kit
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+
+Production-ready React starter kit: Vite + React 19 + TypeScript with routing,
+data fetching, forms, styling, auth scaffolding and quality tooling already
+wired up — so you start on features, not boilerplate.
+
+It runs out of the box against a **built-in mock API** — no backend required.
 
 ## What's inside
 
@@ -18,30 +24,37 @@ Production-ready React starter kit
 ## Quick start
 
 ```bash
+git clone https://github.com/faraz9901/reactjs-starter.git my-app
+cd my-app
 npm install
 npm run dev
 ```
 
-The app boots against a **built-in mock API** (no backend needed): open
-`http://localhost:5173`, sign in with any valid email + 8-char password, and the
-dashboard shows the example `users` feature with loading → error → empty handling.
+Open `http://localhost:5173`, sign in with any valid email + 8-char password, and
+the dashboard shows the example `users` feature with loading → error → empty handling.
 
-To point it at a real API (e.g. the NestJS starter), set `.env`:
+### Point it at your API
+
+Set `.env` (copy from `.env.example`):
 
 ```bash
-VITE_API_URL=http://localhost:9000/api/v1
+VITE_API_URL=https://api.example.com/v1
 ```
+
+Once you're talking to a real API, remove the mock:
+
+1. delete `src/lib/api/mock.ts`
+2. remove the mock switch at the bottom of `src/lib/api/axios.ts`
+3. replace the placeholder bodies in `src/features/auth/auth-store.ts`
 
 ## Environment variables
 
-| Variable                       | Purpose                                                                                          |
-| :----------------------------- | :----------------------------------------------------------------------------------------------- |
-| `VITE_API_URL`                 | API base URL. **Empty in dev → mock responses.** Required (non-localhost) for production builds. |
-| `ALLOW_LOCAL_PRODUCTION_BUILD` | `1` skips the production build check (lets you ship the mock demo).                              |
+| Variable       | Purpose                                                                                 |
+| :------------- | :-------------------------------------------------------------------------------------- |
+| `VITE_API_URL` | API base URL. **Empty → mock responses** (fine in dev; set a real URL before shipping). |
 
-`VITE_*` values are inlined into the bundle at build time — `npm run build` fails with a
-clear message if `VITE_API_URL` is missing or localhost, because that can never be fixed
-after deploy.
+`VITE_*` values are inlined into the bundle at build time — set `VITE_API_URL`
+**before** building, or the shipped bundle runs against the mock adapter.
 
 ## Scripts
 
@@ -93,8 +106,8 @@ src/
 - **Feature modules** — `features/<f>/{api,hooks,types,components}` behind `index.ts`.
 - **Async states** — every data surface renders loading → error → empty → content through
   `AsyncState` (a failed read can never look like an empty list).
-- **Errors** — API `code`s map to messages in `ERROR_CODE_MESSAGES` (keep in sync with the
-  NestJS starter's `src/common/errors.ts`); use `onError` as mutation `onError`.
+- **Errors** — API `code`s map to messages in `ERROR_CODE_MESSAGES` (keep that map in
+  sync with your API's error codes); use `onError` as mutation `onError`.
 - **Buttons** — `Button` / `LoadingButton` from `@/components/ui`, never native `<button>`.
 - **Auth** — `AuthGuard` + placeholder store; swap the store bodies for real API calls.
 
@@ -108,3 +121,11 @@ npm test
 
 Examples pin the contracts: route constants, error extraction order, and `AsyncState`
 branch order (a failed read never renders as empty).
+
+## Contributing
+
+Contributions are welcome — see [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+## License
+
+[MIT](./LICENSE)

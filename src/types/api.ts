@@ -1,11 +1,11 @@
-/** Success envelope returned by the NestJS starter. */
+/** Success envelope returned by the API. */
 export interface ApiSuccess<T> {
   success: true;
   message: string;
   data: T;
 }
 
-/** Error envelope returned by the NestJS starter. */
+/** Error envelope returned by the API. */
 export interface ApiErrorBody {
   success: false;
   message: string;

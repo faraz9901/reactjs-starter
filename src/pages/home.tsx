@@ -32,8 +32,8 @@ export default function HomePage() {
           Your production-ready React starter
         </h1>
         <p className="mx-auto max-w-2xl text-muted-foreground">
-          React Router, TanStack Query, shadcn/ui with Tailwind CSS, Zod validation and the
-          conventions proven in the ProvenMe web monorepo — packaged as a single Vite app.
+          React Router, TanStack Query, shadcn/ui with Tailwind CSS, Zod validation and
+          battle-tested conventions — packaged as a single Vite app.
         </p>
         <div className="flex justify-center gap-3">
           <Button asChild>

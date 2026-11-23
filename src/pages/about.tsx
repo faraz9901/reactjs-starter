@@ -23,7 +23,7 @@ const conventions = [
   },
   {
     title: "Zod everywhere",
-    body: "Shared schemas drive form validation (zodResolver) and can be reused by the NestJS starter.",
+    body: "Shared schemas drive form validation (zodResolver) and can be reused anywhere else you validate data.",
   },
 ];
 
@@ -33,8 +33,8 @@ export default function AboutPage() {
       <div className="space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">About</h1>
         <p className="max-w-2xl text-muted-foreground">
-          This starter distills the conventions of the ProvenMe web monorepo into a single Vite app:
-          same patterns, no workspace plumbing.
+          This starter packages a coherent set of conventions into a single Vite app: clear
+          patterns, no workspace plumbing.
         </p>
       </div>
 

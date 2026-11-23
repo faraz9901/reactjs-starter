@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  /** Base URL of the API (NestJS starter). Empty → built-in mock responses in dev. */
+  /** Base URL of the API. Empty → built-in mock responses in dev. */
   readonly VITE_API_URL?: string;
 }
 

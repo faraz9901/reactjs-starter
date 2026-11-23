@@ -2,6 +2,31 @@
   "name": "react-starter",
   "private": true,
   "version": "0.0.0",
+  "description": "Production-ready React starter kit — Vite, React 19, TypeScript, TanStack Query, shadcn/ui, Tailwind CSS v4, Zod and more, with a built-in mock API.",
+  "license": "MIT",
+  "author": "Mohammed Faraz",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faraz9901/reactjs-starter.git"
+  },
+  "homepage": "https://github.com/faraz9901/reactjs-starter#readme",
+  "bugs": {
+    "url": "https://github.com/faraz9901/reactjs-starter/issues"
+  },
+  "keywords": [
+    "react",
+    "react-starter",
+    "vite",
+    "typescript",
+    "template",
+    "shadcn-ui",
+    "tailwindcss",
+    "tanstack-query",
+    "react-router",
+    "zod",
+    "react-hook-form",
+    "zustand"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",

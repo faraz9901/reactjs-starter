@@ -12,24 +12,24 @@ Guidance for AI agents (and new contributors) working on this codebase.
 
 ## What this is
 
-Single-app Vite starter (no monorepo) carrying the conventions of the ProvenMe web monorepo:
+Single-app Vite starter:
 
 - Vite + React 19 + TypeScript (strict) + React Router 7
 - TanStack Query, react-hook-form + Zod, Zustand
 - shadcn/ui components on Tailwind CSS v4 with design tokens
-- Envelope-unwrapping API client aligned with the **NestJS starter** (`{ success, message, data }`)
+- Envelope-unwrapping API client (`{ success, message, data }`)
 
 ## Commands
 
-| Command              | Purpose                                                                  |
-| :------------------- | :----------------------------------------------------------------------- |
-| `npm run dev`        | Vite dev server (mock API when `VITE_API_URL` is empty)                  |
-| `npm run build`      | Typecheck + production build (fails without a deployable `VITE_API_URL`) |
-| `npm run typecheck`  | `tsc -b` — run before finishing                                          |
-| `npm run lint:check` | ESLint (`--max-warnings 0`) — run before finishing                       |
-| `npm run lint`       | ESLint with `--fix`                                                      |
-| `npm test`           | Vitest run — run before finishing                                        |
-| `npm run format`     | Prettier write                                                           |
+| Command              | Purpose                                                 |
+| :------------------- | :------------------------------------------------------ |
+| `npm run dev`        | Vite dev server (mock API when `VITE_API_URL` is empty) |
+| `npm run build`      | Typecheck + production build                            |
+| `npm run typecheck`  | `tsc -b` — run before finishing                         |
+| `npm run lint:check` | ESLint (`--max-warnings 0`) — run before finishing      |
+| `npm run lint`       | ESLint with `--fix`                                     |
+| `npm test`           | Vitest run — run before finishing                       |
+| `npm run format`     | Prettier write                                          |
 
 Husky: pre-commit runs lint-staged (eslint --fix + prettier on staged files); pre-push runs typecheck + lint:check + test.
 
@@ -111,7 +111,7 @@ export function useUsers() {
 
 ## Types (src/types)
 
-Shared TypeScript types mirror the NestJS API shapes. Add new types here for
+Shared TypeScript types mirror the API's response shapes. Add new types here for
 cross-feature use; feature-only types live in `features/<f>/types/`.
 
 ```ts
@@ -125,9 +125,9 @@ interface PaginatedResponse<T> {
 
 ### Error code map (src/lib/errors/error-codes.ts)
 
-API error codes map to human-readable messages. **Keep in sync with the NestJS
-starter's `src/common/errors.ts` (ErrorCode enum) on every run — when the API
-adds a code, update both sides.**
+API error codes map to human-readable messages. **Keep this map in sync with your
+API's error codes on every run — when the backend adds a code, add it here so the
+UI shows a friendly message instead of raw JSON.**
 
 ### Extracting errors
 
@@ -265,8 +265,8 @@ quite large (above ~70 lines) or state demands it.
 4. **Error codes first** — when the API sends a code, show the mapped message
 5. **Async states always** — every data-fetching surface renders loading, error,
    empty (filtered vs unfiltered) and idle through `AsyncState`
-6. **Error codes sync** — check `src/lib/errors/error-codes.ts` against the
-   NestJS starter's `src/common/errors.ts` on every run
+6. **Error codes sync** — keep `src/lib/errors/error-codes.ts` in sync with your
+   API's error codes
 7. **One exported component per file** — file-local helper components may stay
    with the screen that owns them
 8. **Query hooks per component** — each component owns at most 1–3 React Query
@@ -292,9 +292,8 @@ All three must pass. For changes that touch routing or rendering, also boot
 
 ## Gotchas
 
-- **Production builds fail on purpose** when `VITE_API_URL` is missing or
-  localhost — `VITE_*` values are inlined at build time. Set a real URL, or
-  `ALLOW_LOCAL_PRODUCTION_BUILD=1` to build the mock demo.
+- **`VITE_*` values are inlined at build time** — build with a real
+  `VITE_API_URL` set, or the shipped bundle runs against the mock adapter.
 - **Empty `VITE_API_URL` enables the mock adapter** (`src/lib/api/mock.ts`) so
   the app runs without a backend. Delete the mock together with the switch in
   `src/lib/api/axios.ts` once a real API is wired.

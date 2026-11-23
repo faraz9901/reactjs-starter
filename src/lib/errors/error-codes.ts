@@ -1,8 +1,8 @@
 /**
  * API error code → human-readable message.
  *
- * Keep in sync with the NestJS starter's `src/common/errors.ts` (ErrorCode enum)
- * on every run — when the API adds a code, add it here and update both sides.
+ * Keep this map in sync with your API's error codes — when the backend adds
+ * a code, add it here so the UI shows a friendly message instead of raw JSON.
  */
 export const ERROR_CODE_MESSAGES: Record<string, string> = {
   // Generic

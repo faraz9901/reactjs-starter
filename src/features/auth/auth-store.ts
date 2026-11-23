@@ -4,9 +4,9 @@ import { persist } from "zustand/middleware";
 /**
  * Placeholder auth store.
  *
- * Replace `signIn` with a real call (NestJS starter / auth provider) and
- * `signOut` with a real session teardown — the rest of the app only talks
- * to this store through `useAuth` / `AuthGuard`.
+ * Replace `signIn` with a real call to your auth provider and `signOut`
+ * with a real session teardown — the rest of the app only talks to this
+ * store through `useAuth` / `AuthGuard`.
  */
 export interface AuthUser {
   id: string;
